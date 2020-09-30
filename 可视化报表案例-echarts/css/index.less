@@ -1,0 +1,294 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+//声明图标字体
+@font-face {
+    font-family: electronicFont;
+    src: url(../font/DS-DIGIT.TTF);
+}
+
+body {
+    background: url(../img/bg.jpg) no-repeat top center;
+    line-height: 1.15;
+}
+
+header {
+    position: relative;
+    height: 1.25rem;
+    background: url(../img/head_bg.png) no-repeat;
+    background-size: 100% 100%;
+    h1 {
+        font-size: 0.475rem;
+        color: #FFFFFF;
+        text-align: center;
+        line-height: 1rem;
+    }
+    .showTime {
+        position: absolute;
+        margin-left: 18.75rem;
+        line-height: 0.9375rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.25rem;
+        top: 0;
+    }
+}
+
+//页面主体盒子
+.mainbox {
+    display: flex;
+    min-width: 1024px;
+    max-width: 1920px;
+    height: 300px;
+    margin: 0 auto;
+    padding: 0.125rem 0.125rem 0;
+    .colum {
+        flex: 3;
+    }
+    .colum:nth-child(2) {
+        flex: 5;
+        margin: 0 0.125rem 0.1875rem; //上  左右  下
+        //把中间的图片部分因为旋转二1超出的部分隐藏
+  //    overflow: hidden;
+    }
+    //  .panel {
+    //      height: 3.875rem;
+    //      width: auto;
+    //      border: 1px solid rgba(25, 186, 139, 0.17);
+    //      background: url(../img/line.png) rgba(255, 255, 255, 0.3);
+    //      padding: 0 0.1875rem 0.5rem;
+    //      margin-bottom: 0.1875rem;
+    //  }
+    .panel {
+        position: relative;
+        height: 3.875rem;
+        border: solid 1px rgba(25, 186, 139, 0.17);
+        background: url(../img/line.png) rgba(255, 255, 255, 0.03);
+        padding: 0 0.1875rem 0.5rem; //上  左右  下  内边距的位置设置
+        margin-bottom: 0.1875rem;
+        //利用伪元素来为panel盒子加上边角(左)
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            border-left: 2px solid #02a6b5;
+            border-top: 2px solid #02a6b5;
+            content: '';
+        }
+        //利用伪元素来为panel盒子加上边角(右)
+        &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid #02a6b5;
+            border-top: 2px solid #02a6b5;
+            content: '';
+        }
+        .panel-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            //利用伪元素来为panel盒子加上边角(下左)
+            &::before {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 10px;
+                height: 10px;
+                border-bottom: 2px solid #02a6b5;
+                border-left: 2px solid #02a6b5;
+                content: '';
+            }
+            //利用伪元素来为panel盒子加上边角(下右)
+            &::after {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 10px;
+                height: 10px;
+                border-right: 2px solid #02a6b5;
+                border-bottom: 2px solid #02a6b5;
+                content: '';
+            }
+        }
+        h2 {
+            height: 0.6rem;
+            color: #fff;
+            line-height: 0.6rem;
+            text-align: center;
+            font-size: 0.25rem;
+            font-weight: 400; //不加粗！
+            a{
+                color: #fff;
+                text-decoration: none;
+                margin: 0 0.125rem;
+            }
+        }
+        .chart {
+            height: 3rem;
+//          background-color: pink;
+        }
+    }
+}
+
+li {
+    list-style: none;
+}
+
+//no数字模块
+.no {
+    background: rgba(101, 132, 226, 0.1);
+    padding: 0.1875rem;
+    .no-hd {
+        position: relative;
+        background-color: rgba(25, 186, 139, 0.17);
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 10px;
+            border-left: 2px solid #02a6b5;
+            border-top: 2px solid #02a6b5;
+            content: '';
+        }
+        &::after {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 30px;
+            height: 10px;
+            border-right: 2px solid #02a6b5;
+            border-bottom: 2px solid #02a6b5;
+            content: '';
+        }
+        ul {
+            display: flex;
+            li {
+                position: relative;
+                flex: 1;
+                line-height: 1rem;
+                font-size: 0.875rem;
+                color: #ffeb7b;
+                text-align: center;
+                font-family: 'eletronicFont';
+                //设置数字间隔的小竖线
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 25%;
+                    right: 0;
+                    height: 50%;
+                    width: 1px;
+                    background-color: rgba(255, 255, 255, 0.2);
+                }
+            }
+        }
+    }
+    .no-bd {
+        ul {
+            display: flex;
+            li {
+                flex: 1;
+                text-align: center;
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.225rem;
+                height: 0.5rem;
+                line-height: 0.5rem;
+                padding-top: 0.125rem;
+            }
+        }
+    }
+}
+
+.map {
+    position: relative;
+    height: 10.125rem;
+    .map1 {
+        position: absolute;
+        width: 6.475rem;
+        height: 6.475rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: url(../img/map.png);
+        opacity: 0.3;
+        background-size: 100% 100%; //缩放
+    }
+    .map2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: url(../img/lbx.png);
+        width: 8.0375rem;
+        height: 8.0375rem;
+        background-size: 100%, 100%; //缩放
+        //map2对动画方法进行调用
+        animation: rotate1 15s linear infinite; //15秒、匀速、无限循环
+        opacity: 0.8;
+    }
+    //为球体图片添加animation动画
+    @keyframes rotate1 {
+        from {
+            transform: translate(-50%, -50%) rotate(0deg); //起始位置不变、 从0度开始旋转
+        }
+        to {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+    .map3 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: url(../img/jt.png);
+        width: 7.075rem;
+        height: 7.075rem;
+        background-size: 100%, 100%; //缩放
+        animation: rotate2 10s linear infinite;
+        opacity: 0.8; //改变透明度
+    }
+    @keyframes rotate2 {
+        from {
+            transform: translate(-50%, -50%) rotate(0deg); //起始位置不变、 从0度开始旋转
+        }
+        to {
+            transform: translate(-50%, -50%) rotate(-360deg);
+        }
+    }
+    .chart {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;  //宽度100%
+        height: 10.125rem; //设置为和map一样
+        
+       
+    }
+}
+
+
+
+//约束屏幕尺寸
+@media screen and (max-width:1024px) {
+    html{
+        font-size: 42px !important;
+        
+    }
+}
+
+
+@media screen and (min-width:1920px){
+    html{
+        font-size: 80px !important;
+        
+    }
+}
