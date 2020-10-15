@@ -1,0 +1,82 @@
+2020/9/10
+1.使用HBuilder X进行界面开发，在用vue-router路由进行页面跳转时出现错误：
+  先下载vue-router依赖： npm vue-router依赖
+  在components同级目录 -> router文件-> index.js文件
+  index.js文件中：
+    引入Vue、vue-router、自定义组件(import... from...)
+	Vue下使用 Vue.use(Router):
+	export default new Router({
+	        routes:[{ 
+					     path:'/login',
+	                     name:'Login',
+					     component:Login
+				    }]
+	})
+   main.js文件中：
+   import Vue from 'vue'
+   import App from './App.vue'
+   import router from './router/index.js' //注意：这里引入的是router目录，而且这里的router一定要小写（命名规则）！
+   Vue.config.productionTip = false
+
+   new Vue({
+	     router,
+	     render: h => h(App),
+   }).$mount('#app')
+
+   总结：在引入自定义组件时，引入语句写在main.js/index.js中无影响
+   思考：为什么router命名在main.js中一定要小写？而在index.js中可以大写？     
+   
+2020/9/14
+1.svg与canvas的区别？
+  canvas:
+		 操作对象：位图，依赖分辨率，基于像素进行渲染（缩放后会失真）；
+         元素：单个HTML元素；
+		 像素：只能脚本驱动；
+		 事件交互：用户交互到像素点(x,y)；
+		 使用场景：适合小面积、大数量的应用场景
+		 不要在style中给canvas设置宽高 会有位移差(在标签内设置宽高）；
+		 不支持事件处理器（交互能力复杂）；
+		 
+		 
+		 
+  svg:
+		 操作对象：矢量图，基于图形元素，不依赖分辨率（缩放后不会失真）；
+		 SVG 使用 XML 格式定义图形；
+		 使用场景：适合大面积、小数量的应用场景；
+		 SVG具有丰富的DOM接口；
+	notice: 
+	    矢量图在计算机内部也要转换为位图表示，只不过内部存储着产生位图的方法，放大时自动用参数生成指定比例的图片。
+		
+2020/9/16
+1.jpg、 png、gif、svg等格式图片的区别?
+  
+   位图（点阵图、像素图）：jpg,png,gif 等格式；
+   
+   矢量图（向量图）:svg;
+   
+   有损压缩,体积小，加载快，不支持透明：jpg   大的背景图，轮播图，Banner图
+   
+   无损压缩，体积大，支持透明：png            普遍场景
+   
+   动图：gif  支持动画，颜色种类少
+   
+   文本文件，体积小，不失真，兼容性好：svg     VG loading 效果图：SVG-Loaders  转换工具：在线 JPG、PNG 转 SVG 工具
+   
+
+2020/9/23
+1.页面中文字等于行高了为什么位置还会偏下？？
+
+让行高等于盒子内部的区域
+c3盒模型会把边框一起算上
+
+
+2.
+
+.nav-items:nth-child(-n+2)    选中前两个
+.nav-items:nth-child(n+2)     从第二个开始
+
+
+
+
+
+
