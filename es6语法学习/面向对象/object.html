@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点击</button>
+    <script>
+        var that;
+        var _that;
+        //1.创建类
+        class Star {
+            //构造函数(不需要加function)，如果不设置，自动生成一个构造函数
+            constructor(uname, age) {
+                console.log(this);         //this指向创建的实例对象
+                that = this;
+                //将uname指向当前创建的实例   
+                this.uname = uname;
+                this.age = age;
+                // this.say();
+                this.btn = document.querySelector('button');
+                this.btn.onclick = this.say;
+            }
+            //在类中添加方法
+            say() {
+                console.log(that.uname + '你好~');
+            }
+            sing(song) {
+                console.log(this.uname + '的主打曲是' + song);
+            }
+            dance() {
+                _that = this;
+                console.log(this);
+            }
+        }
+        //2.利用类创建对象
+        var ldh = new Star('刘德华', 23);  //只要有new 则自动调用了constructor
+        console.log(that === ldh);  //true
+        ldh.dance();
+        console.log(_that === ldh);
+
+
+    </script>
+</body>
+
+</html>
