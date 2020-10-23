@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>网络拓扑图test</title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+		<script type="text/javascript" src="http://www.jtopo.com/download/jtopo-0.4.8-min.js"></script>
+		<script type="text/javascript" src="http://www.jtopo.com/demo/js/toolbar.js"></script>
+	</head>
+	<body>
+		
+		<canvas id='canvas' width="850" height="550"></canvas>
+	</body>
+	<script>
+		var stage=null;
+		$(function(){
+		var canvas = document.getElementById('canvas');
+		 stage = new JTopo.Stage(canvas);
+		//stage.frams = -24;
+		var scene = new JTopo.Scene(stage);
+		scene.background = 'img/bg_edit.png';
+		stage.add(scene);
+		
+		stage.eagleEye.visible=true;
+		
+		//设计一个场景
+		
+		scene.backgroundColor='0,200,0';
+		scene.alpha=0.1;
+		
+		//向场景增加节点
+		for(var i=0;i<500;i++){
+			var node=new JTopo.Node(''+i);
+			node.shadow=false;
+			node.setSize(30,30);
+			node.rotate=Math.random();
+			node.textPosition='Middle_Center';
+			var s=2;
+			var x=Math.random()*stage.width*s-Math.random()*stage.width*s;
+			var y=Math.random()*stage.width*s-Math.random()*stage.width*s;
+			node.setLocation(x,y);
+			node.fillColor=JTopo.util.randomColor();
+			scene.add(node);
+			
+		}
+	
+		
+		})
+
+
+
+	</script>
+</html>

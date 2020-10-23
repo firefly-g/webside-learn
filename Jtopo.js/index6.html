@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>网络拓扑图test</title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+		<script type="text/javascript" src="http://www.jtopo.com/download/jtopo-0.4.8-min.js"></script>
+		<script type="text/javascript" src="http://www.jtopo.com/demo/js/toolbar.js"></script>
+	</head>
+
+	<body>
+		<div id="msg"></div>
+		<canvas id='canvas' width="850" height="550"></canvas>
+	</body>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var stage = new JTopo.Stage(canvas);
+		//stage.frams = -24;
+		var scene = new JTopo.Scene(stage);
+		scene.background = 'img/bg_edit.png';
+		stage.add(scene);
+
+		//节点数量
+		var nodeCount = 10000;
+
+		//生成随机坐标
+		function randomCoor(range) {
+			return Math.random() * range - Math.random() * range;
+		}
+
+		//创建节点
+		function creatNode(x, y, text) {
+			var node = new JTopo.CircleNode();
+			node.radius = 10;
+			node.shadow = false;
+			node.tip = text;
+			node.mouseover(function() {
+				this.text = this.tip;
+			});
+			node.mouseout(function() {
+				this.text = '';
+			});
+			node.setSize(20, 20);
+			node.setLocation(x, y);
+			node.fillColor = JTopo.util.randomColor();
+			scene.add(node);
+			return node;
+		}
+
+		var beginTime = (new Date()).getTime();
+
+		//每次循环创建两个节点，一条连线
+		for(var i = 0; i < nodeCount / 2; i++) {
+			var x = randomCoor(3000);
+			var y = randomCoor(3000);
+			var nodeFrom = creatNode(x, y, 'From_' + i);
+			nodeFrom.fontColor = '0,200,255';
+
+			var x2 = x + randomCoor(1000);
+			var y2 = y + randomCoor(1000);
+			var nodeTo =creatNode(x2,y2,'To_'+i);
+			
+			var link = new JTopo.Link(nodeFrom,nodeTo);
+			link.shadow=false;
+			link.lineWidth=1;
+			scene.add(link);		
+
+		};
+		
+		var usedTime =((new Date()).getTime()-beginTime)/1000;
+		$('#msg').html('随机生成1万个节点、5000条连线，用时：'+usedTime+'秒');
+		
+	</script>
+
+</html>
