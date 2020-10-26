@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="mountNode"></div>
+	</body>
+	<!-- 引入 G6 -->
+	    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.7.1/dist/g6.min.js"></script>
+	<script>	
+	//图的实例化
+	const graph=new G6.Graph({
+		
+		fitView:true,
+		fitViewPadding:[20,40,50,20],
+		container:'mountNode',
+		width:800,
+		height:500,
+		
+		defaultNode:{
+			size:20,
+			//节点样式
+			style:{
+				fill:'steelblue',
+				stroke:'#666',
+				lineWidth:1,     //节点描边粗细
+			},
+			//节点上的标签文本
+			labelCfg:{
+				position:'center',
+				style:{
+					fill:'#fff',    //文字颜色
+					fontSize:5,
+				}
+			},
+			nodeStateStyles: {
+				hover: {
+					
+					fill: 'lightsteelblue',
+			
+				},
+				click: {
+					stroke: '#000',
+					lineWidth: 3,
+				},
+			},
+			//边的默认样式和其他配置
+			defaultEdge:{
+				style:{
+					opacity:0.6,
+					stroke:'grey',
+					
+				},
+				labelCfg:{
+					autoRotate:true,
+					
+					style:{
+						fontSize:1,
+					}
+				}
+			}
+			
+		}
+	});
+	
+	//1. 数据的加载
+	const initData={
+		//点集
+		nodes:[
+			{
+				id:'node1',
+				x:100,
+				y:200,
+				label:'起始点',
+			},
+			{
+				id:'node2',
+				x:300,
+				y:200,
+				label:'目标点',
+				}
+		],
+		
+		
+		//边集
+		edges:[
+			{
+				source:'node1',
+				target:'node2',
+				label:'我是连线',
+			}
+			
+		],
+		// const main=async ()=>{
+		// 	const response =await fetch('https://gw.alipayobjects.com/os/basement_prod/6cae02ab-4c29-44b2-b1fd-4005688febcb.json');
+		
+		// const remoteData=await response.json();
+		// console.log(remoteData);
+		// graph.data(remoteData);
+		// graph.render();
+		
+		// }
+		
+		// main();
+
+	
+}
+		
+		//图的渲染
+		graph.data(initData);
+		graph.render();
+		
+		
+		
+		
+	
+	
+	
+	</script>
+</html>
