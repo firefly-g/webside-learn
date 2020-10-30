@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>网络拓扑图test</title>
+
+
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+		
+		<script type="text/javascript" src="http://www.jtopo.com/download/jtopo-0.4.8-min.js"></script>
+		<script type="text/javascript" src="http://www.jtopo.com/demo/js/toolbar.js"></script>
+
+	
+
+	</head>
+
+	<body>
+
+		<canvas id='canvas' width="850" height="550">
+		
+	        </canvas>
+
+	</body>
+	<script>
+		$(function() {
+			var canvas = document.getElementById('canvas');
+			var stage = new JTopo.Stage(canvas);
+			var scene = new JTopo.Scene(stage);
+			scene.background = 'img/bg_edit.png';
+			showJTopoToobar(stage);
+			var node1 = new JTopo.Node("Hello");
+			var node2 = new JTopo.Node("you");
+			node1.fontColor = "0,200,255";
+			node2.fontColor = "0,200,255";
+			node2.setLocation(40, 40);
+			var link = new JTopo.Link(node1, node2);
+			scene.add(node1);
+			scene.add(link);
+			scene.add(node2);
+			
+			var defaultNode =new JTopo.Node('默认节点');
+			scene.add(defaultNode);
+			defaultNode.text='微软雅黑';
+			defaultNode.textPosition='Middle_Center';
+			defaultNode.textOffsetY=8;
+			defaultNode.font='14px 微软雅黑';
+			defaultNode.setSize(100,60);
+			defaultNode.setLocation(180,100);
+			defaultNode.borderRadius=5;
+			defaultNode.borderWidth=3;
+			defaultNode.borderColor= '255,255,255';
+			defaultNode.alpha=0.7;
+			defaultNode.fontColor='200,200,255';
+			
+			
+			var appleNode=new JTopo.Node('图标');
+			appleNode.fontColor='0,0,0';
+			scene.add(appleNode);
+			appleNode.setImage('img/weather.png',true);
+			appleNode.fontcolor='0,0,0';
+			appleNode.setLocation(320,80);
+			appleNode.showSelected=false;    //不显示选中矩形
+			
+			
+			
+			var textNode =new JTopo.TextNode('文字文本');
+			textNode.font='bold 16px 微软雅黑';
+			appleNode.fontcolor='0,200,255';
+//			textNode.setLocation(317,250);
+			scene.add(textNode);
+			
+			//超链接
+//			var linkNode =new JTopo.LinkNode('超链接:http://www.baidu.com');
+//			linkNode.href='http://www.baidu.com';
+//			linkNode.target='_blank';
+//			linkNode.font='italic bold 16px 微软雅黑';
+//			linkNode.visitedColor='0,0,255';
+//			linkNode.shadowOffsetX=5;
+//			linkNode.shadowOffsetY=16;
+////			linkNode.setLocation(250,360);
+//			scene.add(linkNode);
+			
+			
+			var circleNode=new JTopo.CircleNode('node');
+			circleNode.radius=24;   //半径
+			circleNode.fillColor='0,0,255';
+			circleNode.setLocation(200,200);
+			circleNode.textPosition='Middle_Center';
+		   //不显示选中矩形
+			scene.add(circleNode);
+			
+			
+			var node =new JTopo.Node('自定义');
+			node.width=node.height=60;
+			node.setLocation(200,210);
+			
+			node.percent=0.8;          //百分比
+			node.beginDegree=0;        //开始度
+			node.paint=function(g){
+				                                     //外层图形
+				g.beginPath();
+				g.moveTo(0,0);
+				g.fillStyle='rgba(0,255,0,'+this.alpha+')';
+				g.arc(0,0,this.width/2,this.beginDegree,this.beginDegree+2*Math.PI*this.percent);
+				g.fill();
+				g.closePath();
+				g.save();
+				
+				
+				g.beginPath();						//内层图形
+				g.fillStyle='rgba(255,255,0,'+this.alpha+')';
+				g.moveTo(0,0);
+				g.arc(0,0,this.width/2-10,this.beginDegree,this.beginDegree+2*Math.PI);
+				g.fill();
+				g.closePath();
+				g.restore();
+				
+				this.paintText(g);
+			};
+			scene.add(node);
+			
+			
+			
+			
+			
+			node1.mousedown(function(event) {
+				console.log(event)
+				if(event.button == 2) 
+					{
+						node1.text = '按下右键';
+					}
+					else if(event.button == 1){
+						node1.text='按下中键';
+					}else if(event.button == 0){
+						node1.text='按下左键';
+					}
+					
+		
+			});
+			node1.mouseup(function(event){
+				if(event.button == 2) 
+					{
+						node1.text = '松开右键';
+					}
+					else if(event.button == 1){
+						node1.text='松开中键';
+					}else if(event.button == 0){
+						node1.text='松开左键';
+					}
+					
+
+				
+			})
+		
+
+		})
+		
+	</script>
+
+</html>

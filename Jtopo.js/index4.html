@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>网络拓扑图test</title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+		<script type="text/javascript" src="http://www.jtopo.com/download/jtopo-0.4.8-min.js"></script>
+		<script type="text/javascript" src="http://www.jtopo.com/demo/js/toolbar.js"></script>
+	</head>
+
+	<body>
+		<canvas id='canvas' width="850" height="550"></canvas>
+	</body>
+	<script>
+		$(function() {
+			var canvas = document.getElementById('canvas');
+			var stage = new JTopo.Stage(canvas);
+			stage.frams = -24;
+			var scene = new JTopo.Scene(stage);
+			scene.background = 'img/bg_edit.png';
+
+			var ps = ['Top_Left', 'Top_Center', 'Top_Right', 'Middle_Left','Middle_Center', 'Middle_Right', 'Bottom_Left', 'Bottom_Right','Bottom_Center'];
+
+			var n = 0;
+			
+			for(var i = 0; i < 3; i++) {
+				for(var j = 0; j < 3; j++) {
+				
+					var text =position= ps[n++];
+						
+				
+					var circleNode = new JTopo.Node(text);
+				
+					circleNode.fontColor='0,200,0';
+					circleNode.setSize(40, 40);
+					circleNode.fillColor = '0,0,255';
+					circleNode.setLocation(120 + j * 40, 50 + i * 140);
+					circleNode.textPosition = position;
+				
+					scene.add(circleNode);
+
+				}
+			}
+			
+		 var circleNode = new JTopo.CircleNode('左下偏移')
+		 circleNode.fontColor='0,200,0';
+          circleNode.fillColor = '200, 0, 0';
+          circleNode.setLocation(650, 200);
+          circleNode.textPosition = 'Middle_Center';
+//          
+//          // 向左偏移 20像素
+          circleNode.textOffsetX = -30;
+//          // 向下偏移 25像素
+        circleNode.textOffsetY = 30;
+//          
+         scene.add(circleNode);
+         
+         stage.add(scene);
+//          
+//          //居中显示
+          scene.centerAndZoom();
+//
+//			//节点
+
+		})
+	</script>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>网络拓扑图test</title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+		<script type="text/javascript" src="http://www.jtopo.com/download/jtopo-0.4.8-min.js"></script>
+		<script type="text/javascript" src="http://www.jtopo.com/demo/js/toolbar.js"></script>
+	</head>
+	<body>
+		<canvas id='canvas' width="850" height="550"></canvas>
+	</body>
+	<script>
+		$(function(){
+			var canvas = document.getElementById('canvas');
+			var stage = new JTopo.Stage(canvas);
+			//stage.frams = -24;
+			var scene = new JTopo.Scene();
+			scene.background = 'img/bg_edit.png';
+			stage.add(scene);
+			
+			
+			//不指定布局的时候，容器的布局为自动（容器边界随元素变化）
+			var container =new JTopo.Container('边界自动变化');
+			container.textPosition='Middle_Left';
+			container.fontColor='100,255,0';
+			container.font='18pt 微软雅黑';
+			container.borderColor='255,0,0';
+			container.borderRadius=30;
+			scene.add(container);
+			
+			for(var i=0;i<5;i++){
+				var node =new JTopo.Node('A'+i);
+				node.textPosition='Middle_Center';
+				node.fontColor='0,200,255';
+				node.setLocation(300+Math.random()*300,200+Math.random()*200);
+				scene.add(node);
+				container.add(node);
+			}
+			
+			scene.add(new JTopo.Link(container.childs[0],container.childs[1]));
+			scene.add(new JTopo.Link(container.childs[2],container.childs[3]));
+			
+			
+			//流式布局（水平 垂直间隔均为10）
+			var flowLayout =JTopo.layout.FlowLayout(10,10);
+			//网格布局（4行3列）
+			var gridLayout = JTopo.layout.GridLayout(4,3);
+			
+			var container2=new JTopo.Container('点击切换布局');
+			container.textPosition='Middle_Left';
+			container2.layout = flowLayout;
+			container2.fillColor='10,10,100';
+			container2.setBound(10,10,300,200);
+			scene.add(container2);
+			
+			
+			for(var i=0;i<12;i++){
+				var node =new JTopo.Node('F'+i);
+				node.textPosition='Middle_Center';
+				scene.add(node);
+				container2.add(node);
+			}
+			container2.click(function(){
+				if(container2.layout === flowLayout){
+					container2.layout=gridLayout;
+				}else{
+					container2.layout=flowLayout;
+				}
+			})
+			
+			
+			
+		})
+	</script>
+</html>

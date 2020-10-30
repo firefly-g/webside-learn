@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>网络拓扑图test</title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+		<script type="text/javascript" src="http://www.jtopo.com/download/jtopo-0.4.8-min.js"></script>
+		<script type="text/javascript" src="http://www.jtopo.com/demo/js/toolbar.js"></script>
+	</head>
+
+	<body>
+		<canvas id='canvas' width="850" height="550"></canvas>
+	</body>
+	<script>
+		$(function() {
+			var canvas = document.getElementById('canvas');
+			var stage = new JTopo.Stage(canvas);
+			stage.frams = -24;
+			var scene = new JTopo.Scene(stage);
+			scene.background = 'img/bg_edit.png';
+
+			//节点
+			function newNode(x, y, w, h, text) {
+				var node = new JTopo.Node(text);
+				node.setLocation(x, y);
+				node.setSize(x, y);
+				node.setSize(w, h);
+				scene.add(node);
+				return node;
+			}
+
+			//简单连线
+			function newLink(nodeA, nodeZ, text, dashedPattern) {
+				var link = new JTopo.Link(nodeA, nodeZ, text);
+				link.lineWidth = 3;
+				link.bundleOffset = 60;
+				link.bundleGap = 20;
+				link.textOffsetY = 3;
+				link.fontColor = '0,200,255';
+				link.strokeColor = JTopo.util.randomColor();
+				link.dashedPattern = dashedPattern;
+				scene.add(link);
+				return link;
+
+			}
+
+			var from = newNode(100, 80, 60, 60, 'from');
+			var to = newNode(360, 250, 60, 60, 'to');
+			for(var i = 0; i < 5; i++) {
+				newLink(from, to, 'link' + i);
+			}
+			newLink(from, to, 'link', 5);
+
+			//折线
+			function newFoldLink(nodeA, nodeZ, text, direction, dashedPattern) {
+				var link = new JTopo.Link(nodeA, nodeZ, text);
+				link.direction = direction || 'horizonal';
+				link.arrowsRadius = 15;
+				link.lineWidth = 3;
+				link.bundleOffset = 60;
+				link.bundleGap = 50; // 线条之间的间隔
+				link.textOffsetY = 3; // 文本偏移量（向下3个像素）
+				link.strokeColor = JTopo.util.randomColor(); // 线条颜色随机
+				link.dashedPattern = dashedPattern;
+				link.fontColor = '0,200,255';
+				scene.add(link);
+				return link;
+
+			}
+
+			var fromNode = newNode(100, 320, 60, 60, 'from');
+			var node = newNode(300, 470, 60, 60, 'to');
+
+			newFoldLink(fromNode, node, 'up');
+			newFoldLink(fromNode, node, 'down', 'vertical');
+			
+
+
+ // -----------FlexionalLink
+            function newFlexionalLink(nodeA, nodeZ, text, dashedPattern){
+                var link = new JTopo.FlexionalLink(nodeA, nodeZ, text);
+                link.arrowsRadius = 10;  //箭头大小
+                link.lineWidth = 3; // 线宽
+                link.offsetGap = 30;
+                link.bundleGap = 15; // 线条之间的间隔
+                link.textOffsetY = 10; // 文本偏移量（向下15个像素）
+                link.strokeColor = JTopo.util.randomColor(); // 线条颜色随机
+                link.dashedPattern = dashedPattern; 
+                scene.add(link);
+                return link;
+            }
+
+  var fromNode = new JTopo.Node('from');
+            fromNode.setSize(60, 60);
+            fromNode.setLocation(500, 60);
+            scene.add(fromNode);
+            
+            var node = new JTopo.Node("to");    
+            node.setSize(60, 60);
+            node.setLocation(545, 220);
+            scene.add(node);
+            
+            for(var i=0; i<2; i++){
+                newFlexionalLink(fromNode, node, 'u' + i, 3);
+                newFlexionalLink(node, fromNode);
+            }
+
+
+//循环队列
+var  loopNode= new JTopo.Node('loop');
+loopNode.setLocation(600,400);
+scene.add(loopNode);
+for(var i=0;i<3;i++){
+	var link =new JTopo.Link(loopNode,loopNode);
+	link.text='L'+i;
+	link.Width=3;
+	link.bundleGap=30;
+	link.textOffsetY=3;
+	link.strokeColor=JTopo.util.randomColor();
+	link.type='loop';     //自定义属性
+	scene.add(link);
+	link.fontColor = '0,200,255';
+	
+}
+
+
+
+
+
+		})
+	</script>
+
+</html>

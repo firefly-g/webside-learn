@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="mountNode"></div>
+	</body>
+	<!-- 引入 G6 -->
+	<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.7.1/dist/g6.min.js"></script>
+	<script>
+		//实例化minimap插件  const imageMinimap=new G6.ImageMinimap
+		const imageMinimap=new G6.ImageMinimap({
+		width:200,
+		graphImg:'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*eD7nT6tmYgAAAAAAAAAAAABkARQnAQ',
+		});
+		
+		//实例化图
+		const graph = new G6.Graph({
+         plugins:[imageMinimap],      //配置ImageMiniMap插件
+
+			container: 'mountNode',
+			width: 1000,
+			height: 1000,
+
+			//设置力导向布局
+			layout: {
+				type: 'force',
+				preventOverlap: true,
+				linkDistance: 100, //指定边距离为100
+
+			},
+
+			//拖拽和缩放
+			modes: {
+				default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+			},
+//1.配置元素的状态
+			//节点不同状态下的样式集合
+			nodeStateStyles: {
+				hover: {
+					
+					fill: 'lightsteelblue',
+
+				},
+				click: {
+					stroke: '#000',
+					lineWidth: 3,
+				},
+			},
+			
+			//边不同状态下的样式
+			edgeStateStyles: {
+				click: {
+					stroke: 'steelblue',
+				},
+			},
+
+		});
+		//一些主画布的更新操作
+		imageMinimap.updateGraphImg(img);
+
+		const main = async () => {
+			const response = await fetch(
+				'https://gw.alipayobjects.com/os/basement_prod/6cae02ab-4c29-44b2-b1fd-4005688febcb.json');
+			const remoteData = await response.json();
+
+			const nodes = remoteData.nodes;
+			const edges = remoteData.edges;
+			nodes.forEach((node) => {
+				if (!node.style) {
+					node.style = {};
+				}
+				switch (node.class) {
+					case 'c0':
+						{
+							node.type = 'circle';
+							break;
+						}
+					case 'c1':
+						{
+							node.type = 'rect';
+							node.size = [50, 50];
+							break;
+						}
+					case 'c2':
+						{
+							node.type = 'ellipse';
+							node.size = [35, 20];
+							break;
+						}
+
+				};
+				
+			});
+
+			edges.forEach((edge) => {
+				if (!edge.style) {
+					edge.style = {};
+				}
+				edge.style.lineWidth = edge.weight;
+				// //边不同状态下的样式
+			
+				
+			});
+
+			graph.data(remoteData);
+			graph.render();
+		}
+		main();
+		
+		//2.监听并切换元素状态
+		
+		
+		//(1)鼠标进入节点
+		graph.on('node:mouseenter',(e)=>{
+			const nodeItem=e.item;   //获取鼠标进入的节点对象
+			graph.setItemState(nodeItem,'hover',true);   //设置当前节点hover为true	
+		});
+		
+		
+		//(2)鼠标离开节点
+		graph.on('node:mouseleave',(e)=>{
+			const nodeItem = e.item;
+			graph.setItemState(nodeItem,'hover',false);   //设置当前节点hover为false	
+		});
+		
+		//(3)点击节点
+		graph.on('node:click',(e)=>{
+			//先将所有当前是click状态的节点置为非click状态
+			const clickNodes =graph.findAllByState('node','click');
+			clickNodes.forEach((cn)=>{
+				graph.setItemState(cn,'cilck',false);
+			});
+			
+			//获取被点击的节点元素
+			const nodeItem=e.item;
+			//设置当前的click节点状态为true
+			graph.setItemState(nodeItem,'click',true);
+		});
+		
+		//(4)点击边
+		graph.on('edge:click',(e)=>{
+			const clickEdges=graph.findAllByState('edge','click');
+			clickEdges.forEach((ce)=>{
+				graph.setItemState(ce,'click',false);
+			});
+			
+			const edgeItem=e.item;
+			graph.setItemState(edgeItem,'click',true);
+		});
+		
+		
+	</script>
+</html>

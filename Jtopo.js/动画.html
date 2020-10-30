@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>网络拓扑图test</title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+		<script type="text/javascript" src="http://www.jtopo.com/download/jtopo-0.4.8-min.js"></script>
+		<script type="text/javascript" src="http://www.jtopo.com/demo/js/toolbar.js"></script>
+	</head>
+
+	<body>
+
+		<div id="msg"></div>
+		<canvas id='canvas' width="850" height="550"></canvas>
+	</body>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var stage = new JTopo.Stage(canvas);
+		//stage.frams = -24;
+		var scene = new JTopo.Scene(stage);
+		scene.background = 'img/bg_edit.png';
+		stage.add(scene);
+
+		var animates = [
+
+			{
+			rotate: 2 * Math.PI               //旋转的速度
+
+			},
+			{
+				scaleX: 2                  //x轴方向扩大二倍
+			},
+			{
+				height: 60,                 //
+				y: 200
+			},
+			{
+				alpha: 0.1
+			},
+			{
+				alpha: 0.2,
+				y: 50                      //往上移动的速度
+			},
+			{
+				rotate: -4 * Math.PI,    //逆时针旋转
+				scaleX: 2.5,
+				scaleY: 2.5
+			},
+			{
+				x: 300,                  //往x轴移动
+				y: 400,				    //往y轴移动
+				width: 10,
+				height: 10,             //移动时缩小到10
+				rotate: 2 * Math.PI
+			}
+
+		];
+		
+		for(var i=0;i<animates.length;i++){
+			var node=new JTopo.Node('node');
+		    node.setCenterLocation(100+i*90,300);
+		    var color =JTopo.util.randomColor();
+		    node.fillColor=color;
+		    scene.add(node);
+		    JTopo.Animate.stepByStep(node,animates[i],3000,true).start();  
+		
+		}
+		
+		function myNode(text,x,y){
+			var node =new JTopo.Node(text);
+			node.percent=0.8;
+			node.beginDegree=0;
+			node.height=node.width=70;
+			node.setLocation(x,y);
+			node.textPosition='Middle_Center';
+			node.paint=function(g){
+				g.save();
+				
+			}
+		}
+		
+		
+	</script>
+
+</html>
