@@ -92,13 +92,13 @@
   > >
   > > > 2.1筛选方法：
   > > >
-  > > > parent() 				$('li').parent()			查找父级元素
+  > > > parent() 				$('li').parent()			查找父级元素           ******
   > > >
-  > > > children(' ')	       $('ul').children('li')	相当于$('ul>li') 子代选择器
+  > > > children(' ')	       $('ul').children('li')	相当于$('ul>li') 子代选择器    ******
   > > >
-  > > > find(' ')				   $("ul").find('li')		  相当于$('ul  li')  后代选择器
+  > > > find(' ')				   $("ul").find('li')		  相当于$('ul  li')  后代选择器  ******
   > > >
-  > > > siblings(' ')			 $('.first').siblings("li")   查找兄弟节点，不包括自己
+  > > > siblings(' ')			 $('.first').siblings("li")   查找兄弟节点，不包括自己   ******
   > > >
   > > > nextAll([expr])			  $('.first').nextAll('li')	 查找当前元素之后所有的同辈元素
   > > >
@@ -106,15 +106,9 @@
   > > >
   > > > hasClass(class)		$('div').hasClass('protected')  检查当前的元素是否含有某个特定的类
   > > >
-  > > > eq(index)				$('li:eq(2)')									相当于$('li:eq(2)')
+  > > > eq(index)				$('li:eq(2)')									相当于$('li:eq(2)')       ******                                               
   > >
   > > 
-
-  
-
-  
-
-  
 
 - 样式：
 
@@ -127,3 +121,10 @@
 - 元素操作：
 
 - 尺寸、位置操作：
+
+
+
+~~ jquery的排他思想
+
+* 想要多选一的效果。 所有元素清除样式，当前元素设置样式
+* 
