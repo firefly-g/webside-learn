@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+	</head>
+	<style>
+		.current{
+			width: 200px;
+			height: 200px;
+			background-color: #00FFFF;
+		}
+		.after{
+			background-color: pink;
+		}
+	</style>
+	<body>
+		<button>下拉滑动</button>
+		<button>上拉滑动</button>
+		<button>切换滑动</button>
+		<div class='current'></div>
+	</body>
+	<script>
+		$(function(){
+		// $('.current').click(function(){
+		// 	//增加类
+		// 	 $(this).addClass('after');
+		// 	//删除类
+		// 	 $(this).removeClass('after')
+		// 	//切换类
+		// 	$(this).toggleClass('after');
+		// })
+		
+		$('div').hide()
+		// 上拉、下拉显示效果
+		$('button').eq(0).click(function(){
+			
+			$('div').slideDown();
+			
+		})
+		
+		
+		$('button').eq(1).click(function(){
+			
+			$('div').slideUp();
+			
+		})
+		
+		$('button').eq(2).click(function(){
+			
+			$('div').slideToggle();
+			
+		})
+		
+		})
+		
+	</script>
+</html>

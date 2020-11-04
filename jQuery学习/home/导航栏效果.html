@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+				 <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+	</head>
+	<body>
+		<button>快速</button>
+		<button>快速</button>
+		<button>快速</button>
+		<button>快速</button>
+		<button>快速</button>
+		<button>快速</button>
+	</body>
+	<script>
+		$(function(){
+			//1.隐式迭代  给所有的按钮绑定了点击事件
+			$('button').click(function(){
+				//2.当前元素变化背景颜色
+				$(this).css('background-color','pink');
+				//3.其余的兄弟去掉颜色
+				$(this).siblings('button').css('backgorund-color','');
+				
+			})
+		})
+	</script>
+</html>

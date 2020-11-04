@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	 <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+	</head>
+	<style>
+		.wrapper{
+			/* width: 400px;
+			height: 200px; */
+			/* border: 1px solid pink; */
+			display: flex;
+		}
+		a{
+			text-decoration: none;
+		}
+		ul{
+			padding: 5px;
+			margin: 0px;
+			
+			
+			background-color: antiquewhite;
+		}
+		ul li{
+			list-style-type: none;
+			
+			
+		}
+		.top{
+			width: 50px;
+			height: 200px;
+		}
+		.content{
+			
+		
+		border: 1px solid aqua;
+		}
+	</style>
+	<body>
+		<div class="wrapper">
+			<!-- <div class="top"> -->
+			<ul class="left">
+				<li ><a href="#">家具</a></li>
+				<li ><a href="#">美妆</a></li>
+				<li ><a href="#">健身</a></li>
+				<li ><a href="#">服饰</a></li>
+				<li ><a href="#">包包</a></li>
+				<li ><a href="#">海外</a></li>
+				<li ><a href="#">超市</a></li>
+				<li ><a href="#">生鲜</a></li>
+				<li ><a href="#">直播</a></li>
+			</ul>
+			<!-- </div> -->
+			<div class="content" >
+				
+				<div>
+					<a href="#"><img src="img/1.jpg"  /></a>
+				</div> 
+				
+				<div>
+					<a href="#"><img src="img/2.jpg" /></a>
+				</div>
+				
+				<div>
+					<a href="#"><img src="img/3.jpg"/></a>
+				</div>
+				
+				<div>
+					<a href="#"><img src="img/4.jpg" /></a>
+				</div>
+				
+				<div>
+					<a href="#"><img src="img/5.jpg" /></a>
+				</div>
+				
+				<div>
+					<a href="#"><img src="img/6.jpg" /></a>
+				</div>
+				
+				<div>
+					<a href="#"><img src="img/8.jpg" /></a>
+				</div>
+				
+				<div>
+					<a href="#"><img src="img/9.jpg"/></a>
+				</div>
+				
+				<div>
+					<a href="#"><img src="img/8.jpg" /></a>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		$(function(){
+			//1.鼠标经过左侧的小li
+			$('.left li').mouseover(function(){
+				//2.得到当前小li的索引号
+				var index=$(this).index();
+				//3.让右侧盒子响应对应的索引号并显示
+				$('.content div').eq(index).show();
+				//4.让其余的图片隐藏起来（其他的兄弟）
+				$('.content div').eq(index).siblings().hide();
+				
+			})
+		})
+	</script>
+</html>
