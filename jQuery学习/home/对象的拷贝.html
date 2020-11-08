@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+		$(function(){
+			var targetObj={}
+			var obj={
+				id:1,
+				name:"Susan"
+			}
+			$.extend(targetObj,obj)
+			console.log(targetObj)           //浅拷贝（此时targetObj为空，不为空时直接覆盖原来的数据）
+		// obj.name='Tom'
+		// console.log(targetObj)    //Susan
+		// console.log(obj)		//Tom
+		
+		targetObj.name='Jerry'
+		console.log(obj.name)
+		})
+	</script>
+</html>

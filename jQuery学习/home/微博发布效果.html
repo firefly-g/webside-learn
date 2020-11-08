@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+		<style>
+			.box {
+				width: 400px;
+				height: 400px;
+				background-color: antiquewhite;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box" id="weibo">
+			<span>微博发布</span>
+			<textarea name='' class="txt" cols="30" rows="10"></textarea>
+			<button class="btn">发布</button>
+			<ul>
+			</ul>
+			<p>我只响应一次事件</p>
+		</div>
+	</body>
+	<script>
+		$(function() {
+			//1.点击发布按钮  动态创建一个小<li></li>,放入文本框的内容和删除按钮，冰添加到ul中
+			$('.btn').on("click", function() {
+				var li = $('<li></li>')
+				li.html($(".txt").val() + "<a href='javascript:;'>删除</a>");
+				$("ul").prepend(li);
+				li.slideDown()
+				$(".txt").val("")
+			})
+
+			//2.点击删除按钮 删除留言  (利用事件委托)
+			$('ul ').on("click", 'a', function() {
+				$(this).parent().slideUp(function() {
+					$(this).remove()
+				})
+
+			})
+			//one()函数  响应一次事件处理程序
+			$("p").one("click",function(){
+				alert(1111)
+			})
+		})
+	</script>
+</html>

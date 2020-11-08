@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+	</head>
+	<body>
+		<div></div>
+		<ul>
+			<li>我们都是好孩子</li>
+			<li>我们都是好孩子</li>
+			<li>我们都是好孩子</li>
+			<li>我们都是好孩子</li>
+			<li>我们都是好孩子</li>
+			<li>我们都是好孩子</li>
+		</ul>
+		
+		
+		<ol></ol>
+	</body>
+	<script>
+		$(function() {
+			$('ul').on('click', 'li', function() { //只给ul添加了绑定事件,但是触发对象是小li
+				$(this).css('background', 'pink')
+			})
+		})
+		//on()  动态绑定事件
+		$('ol').append('<li>我是新创建的</li>')
+		$('ol').on('click','li',function(){
+			alert('我是动态绑定事件')
+		})
+	</script>
+</html>

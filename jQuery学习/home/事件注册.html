@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+	<style>
+		div{
+			width: 200px;
+			height: 200px;
+			background-color: pink;
+		}
+	</style>
+	<body>
+		<div></div>
+	</body>
+	<script>
+		
+		$(function(){
+			//1.单个事件注册
+			$('div').click(function(){
+				$(this).css('background','red')
+			})
+				$('div').mouseenter(function(){
+					$(this).css('background','skyblue')
+				})
+			})
+			
+			
+			//2.多个注册事件-- on事件
+			$('div').on({
+				mouseenter:function(){
+					$(this).css('background','purple')
+				},
+				click:function(){
+					$(this).css('background','yellow')
+				}
+			})
+			
+			})
+			
+		
+		
+	</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+	</head>
+	<style>
+		div{
+			width: 200px;
+			height: 200px;
+			background-color: #00FFFF;
+		}
+		.active{
+			
+			background-color: #FFC0CB;
+		}
+	</style>
+	<body>
+		<div></div>
+	</body>
+	<script>
+		//鼠标经过和离开都会触发同一个函数
+		$(function(){
+			$('div').on('mouseenter mouseleave',function(){
+				$(this).toggleClass('active')
+			})
+		})
+	</script>
+</html>

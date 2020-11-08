@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+	</head>
+	<body>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+
+		<ul>
+			<li>你好</li>
+			<li>你是谁呀</li>
+		</ul>
+
+
+		<div class="outer" style="width: 200px; height:200px; background: pink;"></div>
+	</body>
+	<script>
+		//1.each()方法遍历元素
+		var sum = 0;
+		var color = ['pink', 'purple', 'skyblue'];
+		$('div').each(function(index, domEle) {
+			console.log(index)
+			console.log(domEle) //输出dom对象  <div>1</div>
+			sum += parseInt($(domEle).text()) //整数6
+			//转换为jquery对象
+			$(domEle).css("color", color[index])
+		})
+
+		console.log(sum)
+
+
+		//2.$.each()方法遍历数据
+		$.each($('div'), function(index, domEle) {
+			console.log(index)
+		})
+		//遍历数组
+		$.each(color, function(index, val) {
+			console.log(index);
+			console.log(val);
+		})
+
+		//遍历对象
+		$.each({
+			name: "Susan",
+			age: 22
+		}, function(index, ele) {
+			console.log(index); //输出 name age 属性名
+			console.log(ele); //输出 Susan 22 属性值
+		})
+		//添加元素
+
+		var li = $('<li>我是新来的</li>');
+		var font = $('<li>我在最前面</li>')
+		$('ul').append(li) //将li放在最后面
+		$('ul').prepend(font)
+
+		var out = $('<div style="background:skyblue;">我是前妈的孩子</div>')
+		var inner = $('<div style="background:skyblue;">我是后妈的孩子</div>')
+		$('.outer').after(out)
+		$('.outer').before(inner)
+		//删除元素
+		$('ul li:eq(0)').remove()  //删除ul下的第一个li元素
+		// $('ul').empty()         //清空ul下的所有子节点
+		$('ul li:eq(1)').html("")  //将元素内容置空
+	</script>
+</html>
