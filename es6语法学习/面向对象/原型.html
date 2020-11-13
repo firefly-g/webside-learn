@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		function Star(name,age){
+			this.name=name;
+			this.age=age;
+			// this.sing=function(){
+			// 	console.log("我会唱歌！")
+			// }
+		}
+		//在Star的原型对象里面添加方法
+		Star.prototype.sing=function(){
+			console.log("我会唱歌！")
+		}
+		var ldh =new Star("刘德华",40)
+		ldh.sing()
+	</script>
+</html>
