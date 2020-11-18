@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		function Star(uname,age){
+			this.uname =uname;            //在构造函数中，this指向的是对象实例
+			this.age = age;
+		}
+		var that;
+		Star.prototype.sing=function(){    //原型对象中的函数中的this指向 实例对象 ldh
+			that=this;
+			console.log("我会演戏")
+		}
+		var ldh = new Star('刘德华',12)
+		ldh.sing();
+		console.log(that ===ldh)   //true
+		
+	</script>
+</html>

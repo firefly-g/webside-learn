@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function fn(x,y){
+			console.log('我想喝奶茶')
+			console.log(this)  //把this指向从windows指向了o
+			console.log(x+y)
+		}
+		var o = {
+			name:'Andy'
+		}
+		
+		
+		//1.call()方法可以调用函数
+		fn.call()
+		
+		//2.call()改变函数this指向
+		fn.call(o,1,2)    //此时的1，2对应fn中的x,y
+	</script>
+</html>

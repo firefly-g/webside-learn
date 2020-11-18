@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box {
+				position: relative;
+				top: 100px;
+				left: 100px;
+				border: 1px solid blue;
+				width: 100px;
+				height: 100px;
+			}
+			
+			#outer {
+				position: relative;
+				top: 25px;
+				left: 25px;
+				width: 50px;
+				height: 50px;
+				border: 1px solid red;
+			}
+			
+			#inner {
+				position: absolute;
+				left: 15px;
+				top: 15px;
+				width: 25px;
+				height: 25px;
+				border: 1px solid green;
+			}
+			
+			#sss {
+				width: 100px;
+				height: 100px;
+				background-color: pink;
+			}
+			
+			li {
+				width: 200px;
+				text-align: center;
+				list-style: none;
+				display: inline-block;
+				background-color: #eee;
+			}
+			
+			#inline-block p {
+				display: inline-block;
+				background-color: red;
+				width: 100px;
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div id="outer">
+				<div id="inner"></div>
+			</div>
+		</div>
+
+		<div id="sss">
+			我是实验者
+		</div>
+
+		<ul>
+			<li>
+				<a href="#">inline-block</a>
+			</li>
+			<li>
+				<a href="#">inline-block</a>
+			</li>
+			<li>
+				<a href="#">inline-block</a>
+			</li>
+			<li>
+				<a href="#">inline-block</a>
+			</li>
+			<li>
+				<a href="#">inline-block</a>
+			</li>
+		</ul>
+
+		<div id="inline-block">
+			display:inline-block 既有行级元素的特性，也有块级元素的特性，因此在同一行，能设置宽高，margin，padding
+			<p>内容内容内容内容内容内容内容</p>内容内容内容内容内容内容
+		</div>
+	</body>
+
+</html>
