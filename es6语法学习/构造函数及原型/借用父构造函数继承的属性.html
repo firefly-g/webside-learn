@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	<script type="text/javascript">
+		//1.父构造函数
+		function Father(uname,age){
+			//this指向父构造函数的对象实例
+			this.uname=uname;
+			this.age=age;
+		}
+		//2.子构造函数
+		function Son(uname,age,score){
+			//this指向子构造函数的对象实例
+			Father.call(this,uname,age);
+			this.score=score;
+		}
+		var son =new Son('刘德华',12,100)
+		console.log(son);
+	</script>
+	</body>
+</html>

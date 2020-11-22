@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	<div class="search">
+		按照价格查询：<input type="text" class="start" /> - <input type="text" class="end">
+		<button type="button" class="search-price" >搜索</button>按商品名称查询：<input type='text' class="product" />
+		<button type="button"  class="search-pro" >查询</button>
+	</div>
+	<table border="" cellspacing="" cellpadding="">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>产品名称</th>
+				<th>价格</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+		
+	</table>
+	</body>
+	<script type="text/javascript">
+		var data=[
+			{
+			id:1,
+			pname:'小米',
+			price:3000	
+		},
+		{
+			id:2,
+			pname:'oppo',
+			price:999
+		},
+		{
+			id:3,
+			pname:'荣耀',
+			price:1299
+		},{
+			id:4,
+			pname:'华为',
+			price:6999	
+		}
+		]
+		
+		//1.获取相应的元素
+		var tbody =document.querySelector('tbody')
+		var search_price=document.querySelector('.search-price')
+		var start=document.querySelector('.start')
+		var end=document.querySelector('.end')
+		var end=document.querySelector('.end')
+		setData(data)
+		//2.把数据渲染到页面中 forEach()
+		function setData(myData){
+			//先清空原来tbody中的数据
+			tbody.innerHTML=''
+			myData.forEach(function(value){
+				//创建一个行
+				var tr = document.createElement('tr')
+				tr.innerHTML='<td>'+value.id+'</td><td>'+value.pname+'</td><td>'+value.price+'</td>'
+				//将行添加到tbody中
+				tbody.appendChild(tr)
+			})
+		}
+		
+		
+		//3.根据价格查询商品 filter()
+		 search_price.addEventListener('click',function(){
+		 var newData= data.filter(function(value){
+				return value.price>= start.value&&value.price<=end.value 
+			})
+			console.log(newData)
+			//把筛选完的对象渲染到页面当中
+			setData(newData)
+		 })
+		 
+		 //按商品名称查询商品 当查询唯一的元素时 用some()更合适
+		 var product = document.querySelector('.product')
+		 var search_pro=document.querySelector('.search-pro')
+		 var array=[]
+		 search_pro.addEventListener('click',function(){
+			 data.some(function(value){
+				 if(value.pname ===product.value){
+					 console.log(value)
+					 array.push(value)
+					 return true
+				 }
+			 })
+			 //把拿到的对象渲染到页面中
+			 setData(array)
+			 
+		 })
+		
+	</script>
+</html>

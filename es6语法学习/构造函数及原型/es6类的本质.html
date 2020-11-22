@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		class Star {
+			
+			}
+			console.log(typeof Star);   //function 本质还是函数 可以认为类 是构造函数的另一种写法
+			console.log(Star.prototype);
+			console.log(Star.prototype.constructor);  //指向类本身
+			Star.prototype.sing=function(){
+				console.log("我是咸蛋超人")
+				}
+				
+			var ldh =new Star();
+			console.log(ldh.__proto__ ===Star.prototype)
+			
+	</script>
+</html>

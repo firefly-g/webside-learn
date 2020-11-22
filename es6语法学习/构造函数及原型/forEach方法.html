@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//1. forEach()  与map()非常相似
+		var arr=[1,2,3,4]
+		var sum =0;
+		arr.forEach(function(value,index,arr){
+			sum+=value
+		})
+		console.log(sum)
+		
+		//2. filter()   把所有满足的元素返回回来
+		var arr=[12,23,45,56]
+		var newArr =arr.filter(function(value,index,arr){
+			return value>=20
+		})
+		var newArr1 =arr.filter(function(value,index,arr){
+			return value%2 ===0
+		})
+		console.log(newArr)
+		console.log(newArr1)
+		
+		//3. some() 满足的条件是否存在  与every()非常相似
+		var a=[10,30,40,4]
+		var color=['red','pink','yellow']
+		var flag=a.some(function(value,index,arr){
+		return value <=30
+		})
+		var newColor =color.some(function(value){
+			return value='pink'                //当查找到第一个pink时 就终止循环
+		})
+		console.log(flag)    //true
+		
+		
+		
+		
+	</script>
+</html>

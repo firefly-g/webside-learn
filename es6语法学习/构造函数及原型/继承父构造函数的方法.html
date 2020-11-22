@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//1.父构造函数
+		function Father(uname,age){
+			//this指向父构造函数的对象实例
+			this.uname=uname;
+			this.age=age;
+		}
+		Father.prototype.money=function(){
+			console.log("我挣了100万")
+			}
+		//2.子构造函数
+		function Son(uname,age,score){
+			//this指向子构造函数的对象实例
+			Father.call(this,uname,age);
+			this.score=score;
+		}
+		// Son.prototype=Father.prototype;  //直接赋值时会有问题
+		
+		Son.prototype=new Father()  
+		//如果利用对象的形式修改了原型对象，别忘了用constructor指回原来的构造函数
+		Son.prototype.constructor=Son;
+		
+		Son.prototype.exam=function(){
+			console.log('孩子得考试')
+		}
+		var son =new Son('刘德华',12,100)
+		console.log(son);
+		 console.log(Father.prototype)  
+		 console.log(Son.prototype)
+		 console.log(Son.prototype.constructor) //此时Son的构造函数指向的是Father了..
+		 
+	</script>
+</html>
