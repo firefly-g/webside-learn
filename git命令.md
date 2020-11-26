@@ -1,8 +1,27 @@
 git命令之-----分支
 
 - git branch -v                      查看分支
+
 - git branch  [分支名]          创建一个新分支
+
 - git checkout [分支名]        切换分支
+
+- git branch -a   查看远程分支
+
+- git checkout -b XXX     新建一个分支，并切换到那个分支上
+
+- git checkout XXX (主干)    git merge XXX (分支名)     切换至主干，在合并分支
+
+- git branch -d xxx (分支名)   删除文件
+
+- git status 查看冲突文件
+
+  > 从分支A获取另一个分支B的部分代码
+  >
+  > 1. 切换至保留分支A
+  >
+  > 2. git checkout B xxx.file
+  > 3. commit and push
 
 git命令之-----合并分支
 
@@ -69,6 +88,8 @@ git命令之-----查看提交历史
 > git add [文件名]                    添加到暂存区
 >
 > git commit  -m  ' '                 提交到本地库
+>
+> git commit -amend			 当提交时发现漏掉了文件，可以重新提交
 
 
 
