@@ -17,3 +17,20 @@
 + 因为row是Object对象类型（引用类型），如果直接赋值的话，就变成了浅拷贝，复制的是地址，导致在表单中改变值的时候table中的数据也跟着改变，所以要进行深拷贝，利用json就可以了，改成下面就行了
 
 + this.editForm = JSON.parse(JSON.stringify(row)) 
+
+
+
+
+
+#### 表格中的数据嵌套问题！！
+
+
+
+#### scope.row问题！！
+
+  this.$nextTick(() => {              //在父组件中调用子组件中的的方法 
+
+​     this.$refs.dialogCharts.initChartData()   
+
+   })
+

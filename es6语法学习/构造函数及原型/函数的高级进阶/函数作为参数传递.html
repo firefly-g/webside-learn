@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		#box{
+			width: 200px;
+			height: 200px;
+			background-color: pink;
+		}
+	</style>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+	 <!--<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
+	<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+		//函数作为参数传递
+		function fn(a,b,callback){
+			console.log(a+b)
+			callback&&callback()
+		}
+		fn(1,2,function(){alert('我是大佬')})
+		$('div').animate({left:100px},function(){
+			$('div').css("background-color","#FFA07A")
+		})
+	</script>
+</html>
