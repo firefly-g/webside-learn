@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	//1.命名函数
+		//function(){};
+	//2.函数表达式（匿名函数）
+	    //var fun = function(){};
+	//3.利用new Function('参数1'，'参数2'，'函数体')
+		var f = new Function('a','b','console.log(a+b)');
+		f(1,2)
+	//4.所有函数都是Function的实例对象
+	console.log(f instanceof Object)
+	
+	//调用方式
+    //* 1.普通函数  fn()  fn.call()
+    //* 2.对象的方法
+    var o={
+    	sayhi:function(){
+    		console.log(111)
+    	}
+    }
+    o.sayhi()
+    //* 3.构造函数
+    function Star(){}
+    new Star()
+    //* 4.绑定事件函数
+    btn.onclick=function(){}
+    //* 5.定时器函数
+    setInterval(function(){},1000)
+    //* 6.立即执行函数
+	</script>
+</html>

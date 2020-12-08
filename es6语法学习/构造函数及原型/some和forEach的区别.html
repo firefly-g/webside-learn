@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		//forEach循环必须全部遍历.不会终止迭代
+		var arr=['red','green','blue','pink'];
+//		arr.forEach(function(value){
+//			if(value=='green')
+//			{
+//			console.log('找到了该元素')
+//			return true
+//		    }
+//			console.log(11)
+//		})
+
+//some循环遇到return true 就会终止迭代 效率更高
+		arr.some(function(value){
+			if(value=='green'){
+				console.log('找到该元素')
+				return true
+			}
+			console.log(111)
+		})
+	
+	</script>
+</html>
