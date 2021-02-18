@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//过滤重复元素
+		 var arr=[1,2,3,4,2,'a','v','a','b']
+		 r=arr.filter(function(element,index,self){
+		 	return self.indexOf(element)===index
+		 })
+		 console.log(r)
+		 
+		 //比较数字大小顺序
+		 var compare =[12,2,34,4,5,8,6,9]
+		 compare.sort(function(x,y){
+		 	if(x<y){
+		 		return -1
+		 	}
+		 	if(x>y){
+		 		return 1
+		 	}
+		 	return 0
+		 })
+		 console.log(compare)
+		 
+		 //其他高阶函数 
+		 //every():判断所有字符是否满足条件
+		 
+		 var eve=['Apple','pear','orange']
+		 console.log(eve.every(function(s){
+		 	return s.toLowerCase()===s     //false 不是每个元素都是小写
+		 }))
+		 
+		 //find():查找符合条件的第一个元素 找到返回元素本身 找不到返回undefined
+		 var eve=['Apple','pear','orange']
+		 console.log(eve.find(function(s){
+		 	return s.toLowerCase()===s
+		 }))                                  //pear
+		  console.log(eve.find(function(s){
+		 	return s.toUpperCase()===s
+		 }))  //undefined
+		 
+		 //findIndex():返回符合条件的第一个元素的索引 找不到返回-1
+		 var eve=['Apple','pear','orange']
+		 console.log(eve.findIndex(function(s){
+		 	return s.toLowerCase()===s
+		 }))   
+		 
+		 //forEach() :把每个参数作用于传入的函数，但不会返回新的数组
+		 var eve=['Apple','pear','orange']
+		 eve.forEach(console.log)    //依次打印每个元素
+		 
+		 //高阶函数除了可以接受函数作为参数外，还可以把函数作为结果值返回
+		 function sum(arr){
+		 	return arr.reduce(function(x,y){
+		 		return x+y
+		 	})
+		 }
+		console.log( sum([1,2,4,5]))   //12
+		
+		//当不需要立即求和时，可以只返回求和的函数
+		function lazy_sum(arr){       //当调用lazy_sum时，返回的不是求和结果，而是求和函数
+			var sum =function(){
+				return arr.reduce(function(x,y){
+					return x+y
+				})
+			}
+			return sum         
+		}
+		var f=lazy_sum([1,2,3,4,5])
+		var f1=lazy_sum([1,2,3,4,5])
+		console.log(f())                //15
+		console.log(f===f1)          //false
+		//注意：每次调用lazy_sum()时，都会返回一个新的函数，即使传入相同的参数
+		
+		 //在闭包中 返回的函数没有立刻执行 直到调用时才执行
+		 function count(){
+		 	var arr=[]
+		 	for(var i=0;i<=3;i++){
+		 		arr.push(function(){
+		 			return i*i
+		 		})
+		 	}
+		 	return arr;
+		 } 
+		 var results=count()
+		 var f1=results[0]
+		 var f2=results[1]
+		 var f3=results[2]
+		 console.log(f1())      //16
+		 console.log(f2())      //16
+		 console.log(f3())      //16
+		 
+		 //闭包的作用：1.返回一个函数并延迟执行 2.封装一个私有变量 3.把多参数的函数变成单参数的函数
+		 //实现一个计数器
+		 function counter(initial){
+		 	var  x=initial||0
+		 	return {
+		 		inc:function(){
+		 			x+=1
+		 			return x
+		 		}
+		 	}
+		 }
+		 var c1=counter()
+		 c1.inc()   //1
+		 c1.inc()   //2
+		 c1.inc()   //3
+		 
+		 var c2=counter(10)
+		 c2.inc()    //11
+		 c2.inc()    //12
+		 c2.inc()    //13
+		 
+		 //
+		 function make_pow(n){
+		 	return function(x){
+		 		return Math.pow(x,n)
+		 	}
+		 }
+		 var pow2=make_pow(2)
+		 var pow3=make_pow(3)
+		 console.log(pow2(3))
+		 console.log(pow3(4))
+	</script>
+</html>

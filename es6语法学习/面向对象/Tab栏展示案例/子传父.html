@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<cpn :itemClick='cpnClick'></cpn>
+		</div>
+
+	</body>
+		<template id="cpn">    
+			<div id="">
+				<button v-for="item in categories" @click="btnClick(item)">{{item.name}}</button>
+			</div>
+		</template>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script >
+		const cpn={
+			template:'#cpn',
+			props:['cmovies','cmessage'],
+			data(){
+				return{
+					categories:[
+						{id:'aaa',name:'热门推荐'},
+						{id:'bbb',name:'手机数码'},
+						{id:'aaa',name:'家用家电'},
+						{id:'aaa',name:'母婴用品'},
+					]
+				}
+			},
+			methods:{
+				btnClick(item){
+					this.$emit('itemClick')
+					
+				}
+			}
+		}
+		const app = new Vue({
+			el: '#app',
+			data: {
+				message: '你好呀！',
+				movies:['海贼王','进击的巨人','罗小黑战记','刺客五六七']
+			},
+			components: {
+				cpn:cpn        //对象字面量
+			},
+			methods:{
+				cpnClick(){
+					console.log('hhhhhh')
+				}
+			}
+		})
+	</script>
+
+</html>

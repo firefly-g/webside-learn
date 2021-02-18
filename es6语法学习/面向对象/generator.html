@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//定义  
+		function* foo(x){
+			yield x+1
+			yield x+2
+			return x+3	
+		}
+		
+		//斐波那契数列的实现
+		//1.一次返回一个Array
+		function fib(max){
+			var t,a=0,b=1,arr=[0,1]
+			while(arr.length<max){
+				[a,b]=[b,a+b]
+				arr.push(b)
+			}
+			return arr
+		}
+		console.log(fib(10))
+		
+		//2.generator 一次返回一个数
+		function* fib(max){
+			var t,a=0,b=1,n=0
+			while(n<max){
+				yield a
+				[a,b]=[b,a+b]
+				n++
+			}
+			return
+		}
+		fib(5) //此时仅仅是调用了generator对象 还没有去执行
+		var f=fib(5)
+		console.log(f.next())
+		console.log(f.next())
+		console.log(f.next())
+		console.log(f.next())
+		console.log(f.next())
+		console.log(f.next())
+	</script>
+</html>

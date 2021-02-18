@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//q切分字符串
+	var str='a ,n   c'
+//	var s=str.split('')
+//	var s =str.split(/\s+/)
+	var s =str.split(/[\s\,]+/)
+	console.log(s)
+	console.log('a,b, c  d'.split(/[\s\,]+/)); // ['a', 'b', 'c', 'd'])
+	console.log('a,b, c ; d'.split(/[\s\,\;]+/)); // ['a', 'b', 'c', 'd'])
+	
+	//提取子字符串
+	var re=/^(\d{3})-(\d{3,8})$/
+	console.log(re.exec('010-12345'))
+	console.log(re.exec('010 12345'))
+	</script>
+</html>

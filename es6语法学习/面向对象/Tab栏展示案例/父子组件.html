@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="app">
+			<cpn :cmovies="movies" :cmessage="message"></cpn>
+		</div>
+		<template id="cpn">     //父传子用prop
+			<div id="">
+				{{cmessage}}
+			</div>
+		</template>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const cpn={
+			template:'#cpn',
+			props:['cmovies','cmessage'],
+			data(){
+				return{}
+			},
+			methods:{}
+		}
+		const app = new Vue({
+			el: '#app',
+			data: {
+				message: '你好呀！',
+				movies:['海贼王','进击的巨人','罗小黑战记','刺客五六七']
+			},
+			components: {
+				cpn       //对象字面量
+			} 
+		})
+	</script>
+
+</html>
