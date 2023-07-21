@@ -17,6 +17,12 @@ func main() {
 	toStructWithAnonymousFields()
 	//方法和接收者
 	toMethod()
+	//使用聚合在类型中嵌入功能
+	toEmbedFunc()
+	//使用内嵌来包含所需功能
+	toNestedFunc()
+	//多重继承
+	toInherit()
 
 }
 
@@ -125,6 +131,7 @@ func toStructWithAnonymousFields() {
 	通过类型 outer.int 的名字来获取存储在匿名字段中的数据，于是可以得出一个结论：
 	在一个结构体中对于每一种数据类型只能有一个匿名字段。
 	ps:内嵌结构体出现同名时，外层会覆盖内层名字
+	结构体内嵌和自己在同一个包中的结构体时，可以彼此访问对方所有的字段和方法。
 	**/
 }
 
@@ -151,4 +158,65 @@ func toMethod() {
 	//实例化
 	cat := animal{"猫", "小宝"}
 	cat.speak()
+}
+
+type Customer struct {
+	name string
+	log  *Log
+}
+type Log struct {
+	msg string
+}
+
+func toEmbedFunc() {
+	c := new(Customer)
+	c.name = "顾客·1"
+	c.log = new(Log)
+	c.log.msg = "我是来买菜的"
+	c.log.add("我喜欢吃西红柿")
+	log.Print(c.print())
+
+}
+func (l *Log) add(s string) {
+	l.msg += "\n" + s
+}
+func (c *Customer) print() *Log {
+	return c.log
+}
+
+type Business struct {
+	name string
+	Log
+}
+
+func toNestedFunc() {
+	b := Business{"商家1", Log{"我是卖东西的"}}
+	b.add("我卖蔬菜和水果")
+	log.Print(b)
+	/**
+	内嵌的类型不需要指针，他直接调用嵌套类型的方法
+	*/
+}
+
+type camera struct{}
+type phone struct{}
+type cameraPhone struct {
+	camera
+	phone
+}
+
+func (c *camera) takePhoto() string {
+	return "picture  token!"
+}
+func (p *phone) call() string {
+	return "ring someone!"
+}
+func toInherit() {
+	/**
+	多重继承指类型获得多个父类型行为的能力
+	**/
+	cp := cameraPhone{}
+	log.Print(cp.call())
+	log.Print(cp.takePhoto())
+
 }
